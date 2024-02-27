@@ -14,7 +14,9 @@ class Exchange1SController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'status' => true
+        ]);
     }
 
     public function storeCategories(Request $request)
@@ -31,19 +33,29 @@ class Exchange1SController extends Controller
                     'slug' => Str::slug($item['title']),
                 ]
             );
-            $cats_parent[$item['uuid']] = $cat->id;
+            $cats_parent[$cat->id] = $item['uuid'];
         }
 
         foreach ($data as $item) {
             if (!isset($item['puuid'])) continue;
-            Category::updateOrCreate(
-                ['uuid' => $item['uuid']],
-                [
-                    'title' => $item['title'],
-                    'slug' => Str::slug($item['title']),
-                    'parent_id' => $cats_parent[$item['title']],
-                ]
-            );
+
+            try {
+                Category::updateOrCreate(
+                    ['uuid' => $item['uuid']],
+                    [
+                        'title' => $item['title'],
+                        'slug' => Str::slug($item['title']),
+                        'parent_id' => array_search($item['puuid'], $cats_parent),
+                    ]
+                );
+            } catch (\Exception $e) {
+                return $this->jsonResponse([
+                    'status' => false,
+                    'data' => $data,
+                    'category' => $item,
+                    'message' => $e->getMessage(),
+                ]);
+            }
         }
 
         return response()->json([

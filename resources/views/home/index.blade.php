@@ -35,4 +35,47 @@
             </div>
         </div>
     </div>
+
+    <div>
+        <div class="d-flex justify-content-between m-3 mb-2">
+            <h2 class="fs-7">Категории</h2>
+            <div class="fs-7">Все <i class="bi bi-arrow-right-short"></i></div>
+        </div>
+        <div class="owl-carousel">
+            @foreach($viewData['categories'] as $category)
+                <div class="item">
+                    <img src="{{ asset('/storage/'.$category->photo) }}" alt="">
+                </div>
+            @endforeach
+        </div>
+    </div>
 @endsection
+
+@push('styles')
+    <link rel="stylesheet" href="{{asset('css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/owl.theme.default.min.css')}}">
+@endpush
+
+@push('scripts')
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/owl.carousel.min.js')}}"></script>
+    <script>
+        $('.owl-carousel').owlCarousel({
+            center: true,
+            items: 2,
+            loop:true,
+            margin:10,
+            responsive:{
+                0:{
+                    items:2
+                },
+                600:{
+                    items:3
+                },
+                1000:{
+                    items:5
+                }
+            }
+        })
+    </script>
+@endpush

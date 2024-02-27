@@ -92,3 +92,7 @@
 body {
     font-family: Cera Pro, Arial, Helvetica, sans-serif;
 }
+
+.fs-7 {
+    font-size: 0.85rem!important;
+}

@@ -4,7 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Anna Anna')</title>
+    <link rel="icon" type="image/png" href="{{asset('favicon.png')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    @stack('styles')
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
 </head>
 <body>
@@ -58,12 +61,39 @@
     @yield('content')
 
     <!-- FOOTER -->
-    <footer class="container">
-        <p class="float-end"><a href="#">Back to top</a></p>
-        <p>© 2017–2022 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    <footer  class="container">
+        <div class="row mt-5">
+            <div class="col-12 col-md-6">
+                <h4>Anna Anna</h4>
+                <p>Одежда от казахстанского бренда ANNA ANNA: изыск в каждой детали.</p>
+                <p>Отбрось шаблоны, будь собой!</p>
+            </div>
+            <div class="col-12 col-md-3">
+                <h4>Покупателям</h4>
+                <div class="list-group">
+                    <a class="list-group-item border-0" href="#">Доставка</a>
+                    <a class="list-group-item border-0" href="#">Возврат</a>
+                    <a class="list-group-item border-0" href="#">Вопросы и ответы</li>
+                    <a class="list-group-item border-0" href="#">Отзывы</a>
+                </div>
+            </div>
+            <div class="col-12 col-md-3">
+                <h4>О компании</h4>
+                <div class="list-group">
+                    <a class="list-group-item border-0" href="#">История</a>
+                    <a class="list-group-item border-0" href="#">Карьера</a>
+                    <a class="list-group-item border-0" href="#">Контакты</a>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <p class="col-6">© 2024 Anna Anna - Все права защищены.</p>
+            <p class="col-6 text-end"><a href="#">Back to top</a></p>
+        </div>
     </footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
+@stack('scripts')
 </body>
 </html>
