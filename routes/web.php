@@ -21,4 +21,6 @@ Route::get('/admin/category', 'App\Http\Controllers\Admin\AdminCategoryControlle
 Route::get('/admin/category/{id}/edit', 'App\Http\Controllers\Admin\AdminCategoryController@edit')->name('admin.category.edit');
 Route::put('/admin/category/{id}/update', 'App\Http\Controllers\Admin\AdminCategoryController@update')->name('admin.category.update');
 
-Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
+Route::get('/admin/product', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
+Route::get('/admin/product/{id}/edit', 'App\Http\Controllers\Admin\AdminProductController@edit')->name('admin.product.edit');
+Route::put('/admin/product/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name('admin.product.update');

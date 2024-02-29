@@ -53,7 +53,6 @@ class AdminCategoryController extends Controller
     {
         Category::validate($request);
 
-
         if ($request->hasFile('photo')) {
             $category = Category::findOrFail($id);
             $photoName = $category->uuid . '.' . $request->file('photo')->extension();

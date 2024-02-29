@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/', 'App\Http\Controllers\Api\Exchange1SController@index');
 Route::post('/storeCategories', 'App\Http\Controllers\Api\Exchange1SController@storeCategories');
+Route::post('/storeProducts', 'App\Http\Controllers\Api\Exchange1SController@storeProducts');

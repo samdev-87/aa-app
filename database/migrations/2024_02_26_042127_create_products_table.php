@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('colors')->nullable();
             $table->float('price');
             $table->float('discount')->nullable();
-            $table->foreignIdFor(\App\Models\Category::class);
+            $table->foreignIdFor(\App\Models\Category::class)->nullable();
             $table->timestamps();
         });
     }
