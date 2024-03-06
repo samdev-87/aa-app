@@ -9,7 +9,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                {{--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">--}}<rect width="100%" height="100%" fill="#777"/></svg>
+                {{--<svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/></svg>--}}
                 <img src="{{asset('images/banner/mobile/novinki.jpg')}}" class="d-block w-100" alt="">
                 <div class="container">
                     <div class="carousel-caption text-start">
@@ -37,9 +37,11 @@
     </div>
 
     <div>
-        <div class="d-flex justify-content-between m-3 mb-2">
-            <h2 class="fs-7">Категории</h2>
-            <div class="fs-7">Все <i class="bi bi-arrow-right-short"></i></div>
+        <div class="m-3 mb-2">
+            <a class="d-flex justify-content-between" href="{{route('product.index')}}">
+                <h2 class="fs-7">Категории</h2>
+                <div class="fs-7">Все <i class="bi bi-arrow-right-short"></i></div>
+            </a>
         </div>
         <div class="owl-carousel">
             @foreach($viewData['categories'] as $category)
@@ -49,6 +51,42 @@
             @endforeach
         </div>
     </div>
+
+    <div>
+        <div class="m-3 mb-2">
+            <a class="d-flex justify-content-between" href="{{route('product.index')}}">
+                <h2 class="fs-7">Новинки</h2>
+                <div class="fs-7">Все <i class="bi bi-arrow-right-short"></i></div>
+            </a>
+        </div>
+        <div class="owl-carousel">
+            @foreach($viewData['products'] as $product)
+                <div class="item">
+                    <img src="{{ asset('/storage/'.$product->photo) }}" alt="">
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    @foreach($viewData['categories'] as $category)
+        @php $products = $category->products()->where('photo', '<>', '')->get() @endphp
+        @if(empty($products)) @continue @endif
+        <div>
+            <div class="m-3 mb-2">
+                <a class="d-flex justify-content-between" href="{{route('product.index')}}">
+                    <h2 class="fs-7">{{$category->title}}</h2>
+                    <div class="fs-7">Все <i class="bi bi-arrow-right-short"></i></div>
+                </a>
+            </div>
+            <div class="owl-carousel">
+                @foreach($products as $product)
+                    <div class="item">
+                        <a href="{{route('product.show', $product->id)}}"><img src="{{ asset('/storage/'.$product->photo) }}" alt=""></a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    @endforeach
 @endsection
 
 @push('styles')
