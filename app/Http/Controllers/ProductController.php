@@ -21,7 +21,7 @@ class ProductController extends Controller
         $viewData = [];
         $product = Product::findOrFail($id);
         $viewData["title"] = $product->name . " - Anna Anna";
-        $viewData["subtitle"] = $product->name . " - Product information";
+        $viewData["subtitle"] = $product->name . " - Информация о товаре";
         $viewData["product"] = $product;
         return view('product.show')->with("viewData", $viewData);
     }

@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class Product extends Model
 {
+    /**
+     * PRODUCT ATTRIBUTES
+     * $this->items - Item[] - contains the associated items
+     */
+
     protected $fillable = [
         'uuid',
         'title',
@@ -34,8 +39,33 @@ class Product extends Model
         ]);
     }
 
+    public static function sumPricesByQuantities($productsInCart, mixed $productsInSession)
+    {
+        $total = 0;
+        foreach ($productsInCart as $product) {
+            $total = $total + ($product->price);
+        }
+
+        return $total;
+    }
+
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(Item::class);
+    }
+
+    public function getItems()
+    {
+        return $this->items;
+    }
+
+    public function setItems($items)
+    {
+        $this->items = $items;
     }
 }

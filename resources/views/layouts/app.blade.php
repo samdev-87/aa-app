@@ -64,7 +64,7 @@
     <footer  class="container">
         <div class="row mt-5">
             <div class="col-12 col-md-6">
-                <h4>Anna Anna</h4>
+                <h4><a href="/">Anna Anna</a></h4>
                 <p>Одежда от казахстанского бренда ANNA ANNA: изыск в каждой детали.</p>
                 <p>Отбрось шаблоны, будь собой!</p>
             </div>

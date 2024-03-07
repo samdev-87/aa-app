@@ -62,7 +62,7 @@
         <div class="owl-carousel">
             @foreach($viewData['products'] as $product)
                 <div class="item">
-                    <img src="{{ asset('/storage/'.$product->photo) }}" alt="">
+                    <a href="{{route('product.show', $product->id)}}"><img src="{{ asset('/storage/'.$product->photo) }}" alt=""></a>
                 </div>
             @endforeach
         </div>
