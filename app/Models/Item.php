@@ -69,34 +69,14 @@ class Item extends Model
         $this->attributes['order_id'] = $orderId;
     }
 
-    public function getProductId()
+    public function getSpecificationId()
     {
-        return $this->attributes['product_id'];
+        return $this->attributes['specification_id'];
     }
 
-    public function setProductId($productId)
+    public function setSpecificationId($productId)
     {
-        $this->attributes['product_id'] = $productId;
-    }
-
-    public function getCreatedAt()
-    {
-        return $this->attributes['created_at'];
-    }
-
-    public function setCreatedAt($createdAt)
-    {
-        $this->attributes['created_at'] = $createdAt;
-    }
-
-    public function getUpdatedAt()
-    {
-        return $this->attributes['updated_at'];
-    }
-
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->attributes['updated_at'] = $updatedAt;
+        $this->attributes['specification_id'] = $productId;
     }
 
     public function order()
