@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Specification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -24,5 +26,16 @@ class ProductController extends Controller
         $viewData["subtitle"] = $product->name . " - Информация о товаре";
         $viewData["product"] = $product;
         return view('product.show')->with("viewData", $viewData);
+    }
+
+    public function getSizesByColor(Request $request)
+    {
+        $sizes = DB::table('specifications')
+            ->select('size')
+            ->where('product_id', $request->get('id'))
+            ->where('color', $request->get('color'))
+            ->get();
+        $html = view('template.options')->with('options', $sizes)->render();
+        return response()->json(['html' => $html]);
     }
 }

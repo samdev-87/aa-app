@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Specification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
@@ -76,6 +77,8 @@ class Exchange1SController extends Controller
             $cats_arr[$key] = (string) $item;
         }
 
+        $products_id = [];
+
         foreach ($data as $item) {
             $cat_id = isset($item['puuid']) ? array_search($item['puuid'], $cats_arr) : false;
             $product = Product::updateOrCreate(
@@ -94,6 +97,29 @@ class Exchange1SController extends Controller
                     'category_id' => $cat_id ?: null,
                 ]
             );
+
+            $products_id[] = $product->id;
+
+            foreach ($item['properties'] as $property) {
+                Specification::updateOrCreate(
+                    ['uuid' => $property['uuid']],
+                    [
+                        'title' => $property['title'],
+                        'product_id' => $product->id,
+                        'size' => $property['size'],
+                        'color' => $property['color'],
+                        'price' => $property['price'],
+                        'discount' => $property['discount'],
+                        'stock' => $property['stock'],
+                    ]
+                );
+            }
+        }
+
+        $products = Product::whereNotIn('id', $products_id)->where('stock', '>', 0)->get();
+        foreach ($products as $product) {
+            $product->stock = 0;
+            $product->save();
         }
 
         return response()->json([

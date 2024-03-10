@@ -32,6 +32,24 @@
                             </a>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="5">
+                            @if(count($product->specifications))
+                            <table class="table mb-0">
+                                <tbody>
+                                @foreach($product->specifications as $spec)
+                                    <tr>
+                                        <th scope="row">{{ $spec->title }}</th>
+                                        <td>{{ $spec->price }} тг.</td>
+                                        <td>{{ $spec->discount }} %</td>
+                                        <td>{{ $spec->stock }} шт.</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                            @endif
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

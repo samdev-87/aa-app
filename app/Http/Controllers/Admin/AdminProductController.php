@@ -13,7 +13,7 @@ class AdminProductController extends Controller
     {
         $viewData = [];
         $viewData['title'] = 'Админка - Товары - Anna Anna';
-        $viewData['products'] = Product::with('category')->simplePaginate(25);
+        $viewData['products'] = Product::with('category', 'specifications')->simplePaginate(25);
 //        dd($viewData['products']);
         return view('admin.product.index')->with('viewData', $viewData);
     }

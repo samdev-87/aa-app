@@ -22,7 +22,7 @@
                         <div class="col-auto">
                             <div class="input-group mb-2">
                                 <div class="input-group-text">Цвет:</div>
-                                <select name="color" class="form-select">
+                                <select id="color" name="color" class="form-select" data-id="{{ $viewData['product']->id }}">
                                     @foreach(explode(',', $viewData['product']->colors) as $color)
                                         @if ($loop->first)
                                             <option value="{{$color}}" selected="selected">{{$color}}</option>
@@ -36,7 +36,7 @@
                         <div class="col-auto">
                             <div class="input-group mb-2">
                                 <div class="input-group-text">Размер:</div>
-                                <select name="size" class="form-select">
+                                <select id="size" name="size" class="form-select">
                                     @foreach(explode(',', $viewData['product']->sizes) as $size)
                                         @if ($loop->first)
                                             <option value="{{$size}}" selected="selected">{{$size}}</option>
@@ -57,3 +57,39 @@
         </div>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#color').change(function(e) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                e.preventDefault();
+
+                var data = {
+                    id: $(this).data('id'),
+                    color: $(this).val(),
+                }
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/get-sizes-by-color',
+                    data: data,
+                    dataType: 'json',
+                    success: function(response) {
+                        $('#size').html(response['html']);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
