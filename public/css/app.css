@@ -105,3 +105,20 @@ a {
 .bd-color {
     color: #bd9e6d;
 }
+
+.navbar-toggler-icon {
+    width: 1.25em;
+    height: 1.25em;
+}
+
+.bi-bag {
+    font-size: 1.25em;
+}
+
+.footer-border-top {
+    border-top: 1px solid rgba(79,62,53,.12);
+}
+
+.footer__bottom {
+    min-height: 50px;
+}

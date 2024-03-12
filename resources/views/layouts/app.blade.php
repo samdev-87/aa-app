@@ -35,8 +35,8 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
-            <a class="navbar-brand" href="#">Anna Anna</a>
-            <a class="text-white" href="{{ route('cart.index') }}"><i class="bi bi-bag"></i></a>
+            <a class="navbar-brand" href="/">Anna Anna</a>
+            <a class="text-white d-md-none" href="{{ route('cart.index') }}"><i class="bi bi-bag"></i></a>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
                     <li class="nav-item">
@@ -63,39 +63,62 @@
     @yield('content')
 
     <!-- FOOTER -->
-    <footer  class="container">
-        <div class="row mt-5">
-            <div class="col-12 col-md-6">
-                <h4><a href="/">Anna Anna</a></h4>
-                <p>Одежда от казахстанского бренда ANNA ANNA: изыск в каждой детали.</p>
-                <p>Отбрось шаблоны, будь собой!</p>
-            </div>
-            <div class="col-12 col-md-3">
-                <h4>Покупателям</h4>
-                <div class="list-group">
-                    <a class="list-group-item border-0" href="#">Доставка</a>
-                    <a class="list-group-item border-0" href="#">Возврат</a>
-                    <a class="list-group-item border-0" href="#">Вопросы и ответы</li>
-                    <a class="list-group-item border-0" href="#">Отзывы</a>
+    <footer class="footer-border-top mt-3 fs-7">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-6 py-4">
+                    <h4><a href="/">Anna Anna</a></h4>
+                    <p>Одежда от казахстанского бренда ANNA ANNA: изыск в каждой детали.</p>
+                    <p>Отбрось шаблоны, будь собой!</p>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h4>Покупателям</h4>
+                    <div class="list-group">
+                        <a class="list-group-item border-0" href="#">Доставка</a>
+                        <a class="list-group-item border-0" href="#">Возврат</a>
+                        <a class="list-group-item border-0" href="#">Вопросы и ответы</a>
+                        <a class="list-group-item border-0" href="#">Отзывы</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-3">
+                    <h4>О компании</h4>
+                    <div class="list-group">
+                        <a class="list-group-item border-0" href="#">История</a>
+                        <a class="list-group-item border-0" href="#">Карьера</a>
+                        <a class="list-group-item border-0" href="#">Контакты</a>
+                    </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
-                <h4>О компании</h4>
-                <div class="list-group">
-                    <a class="list-group-item border-0" href="#">История</a>
-                    <a class="list-group-item border-0" href="#">Карьера</a>
-                    <a class="list-group-item border-0" href="#">Контакты</a>
-                </div>
+            <div class="py-4 footer-border-top">
+                <a class="me-3" href="https://www.youtube.com/@annaanna_official">YouTube</a>
+                <a class="me-3" href="https://www.instagram.com/annaanna_official">Instagram</a>
             </div>
-        </div>
-        <div class="row mt-5">
-            <p class="col-6">© 2024 Anna Anna - Все права защищены.</p>
-            <p class="col-6 text-end"><a href="#">Back to top</a></p>
+            <div class="d-flex justify-content-between align-items-center footer__bottom footer-border-top">
+                <div>© 2024 Anna Anna</div> {{---Все права защищены.--}}
+                <div><a href="#">Наверх</a></div>
+            </div>
         </div>
     </footer>
 </main>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" crossorigin="anonymous"></script>
 @stack('scripts')
+<script>
+    $(document).ready(function() {
+        var scroll_pos = 0;
+        $(document).scroll(function() {
+            scroll_pos = $(this).scrollTop();
+            if(scroll_pos > 300) {
+                $("nav").css('background-color', 'white');
+                $('.navbar-brand').css('color', "rgb(79, 62, 53)")
+                $('.bi-bag').css('color', "rgb(79, 62, 53)")
+            } else {
+                $("nav").css('background-color', 'inherit');
+                $('.navbar-brand').css('color', "#fff")
+                $('.bi-bag').css('color', "#fff")
+            }
+        });
+    });
+</script>
 </body>
 </html>
